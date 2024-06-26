@@ -27,12 +27,12 @@ type TArticleParamsProps = {
 };
 
 export const ArticleParamsForm = ( { state, onChange }: TArticleParamsProps ) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [articleState, setArticleState] = useState({...state});
 	const rootRef = useRef<HTMLDivElement | null>(null);
 	
 	const handleClickForVisible = () => {
-		setIsOpen(!isOpen);
+		setIsMenuOpen(!isMenuOpen);
 	};
 
 	const handleReset = () => {
@@ -47,16 +47,16 @@ export const ArticleParamsForm = ( { state, onChange }: TArticleParamsProps ) =>
 	};
 
 	useOutsideClickClose({
-		isOpen: isOpen,
+		isOpen: isMenuOpen,
 		rootRef: rootRef,
-		onChange: setIsOpen,
+		onChange: setIsMenuOpen,
 	});
 
 	return (
 		<>
-			<ArrowButton onClick={handleClickForVisible} isOpen={isOpen}/>
+			<ArrowButton onClick={handleClickForVisible} isOpen={isMenuOpen}/>
 			<aside 
-				className={clsx(styles.container, isOpen && {[styles.container_open]: isOpen })}
+				className={clsx(styles.container, isMenuOpen && {[styles.container_open]: isMenuOpen })}
 				ref={rootRef}
 			>
 				<form 
